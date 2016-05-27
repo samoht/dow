@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Container Logs</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <style>
+    body {
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var name = window.location.pathname;
+    console.log("name: ", name);
+    var socket = io('http://localhost:8000');
+    socket.on(name, function (message) {
+      var div = document.createElement('div');
+      div.innerHTML = message.html;
+      document.body.appendChild(div);
+    });
+  </script>
+</html>
